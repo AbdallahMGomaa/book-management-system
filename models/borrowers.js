@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize')
 const db = require('../db')
 const { User } = require('./auth')
 
-const Borrower = db.define('User', {
+const Borrower = db.define('Borrower', {
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -18,3 +18,7 @@ const Borrower = db.define('User', {
     },
 })
 
+User.hasOne(Borrower)
+Borrower.belongsTo(User)
+
+module.exports = {Borrower}

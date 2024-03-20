@@ -2,25 +2,15 @@ const {User, Role, UserRole} = require('../models/auth')
 const bcrypt = require('bcryptjs')
 const { generateToken } = require('../utils/auth')
 const sequelize = require('../db')
-const {getUserRolesService} = require('../services/auth')
+const {createUser, getUserRolesService} = require('../services/auth')
 
 
 async function registerUser(request, response) {
     try {
-        const {username, password} = request.body
-        if (!validateEmail(email)) {
-            throw new Error('invalid email')
-        }
-        if (!validatePassword(password)) {
-            throw new Error('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character')
-        }
-        const hashedPassword = await bcrypt.hash(password, 15)
-        const user = await User.create({username, password: hashedPassword})
+        const {email, password} = request.body
+        const user = createUser(email, password)
         const token = generateToken(user)
-        response.status(200).json({user: {
-            id: user.id,
-            username: user.username
-        }, token})
+        response.status(200).json({token})
     }
     catch (error) {
         response.status(400).json({error: error.message})

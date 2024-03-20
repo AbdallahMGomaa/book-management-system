@@ -3,6 +3,8 @@ const app = express()
 
 const bookRouter = require('./routers/books')
 const authRouter = require('./routers/auth')
+const borrowersRouter = require('./routers/borrowers')
+
 
 require('dotenv').config()
 
@@ -11,6 +13,8 @@ require('dotenv').config()
 // Routes
 app.use('/books', bookRouter)
 app.use('/auth', authRouter)
+app.use('/borrowers', borrowersRouter)
+
 
 
 // Run server

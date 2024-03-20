@@ -67,20 +67,5 @@ async function deleteBook(request, response) {
     }
 }
 
-async function filterBooks(request, response) {
-    try {
-        const bookId = request.params.id;
-        const book = await Book.findByPk(bookId);
-        if (book) {
-            response.status(200).json(book);
-        } else {
-            response.status(404).json({ error: "book not found" });
-        }
-    } catch (error) {
-        response.status(500).json({ error: error.message });
-    }
-}
 
-
-
-module.exports =  {getBooks, getBookById, createBook, updateBook, deleteBook, filterBooks}
+module.exports =  {getBooks, getBookById, createBook, updateBook, deleteBook}
