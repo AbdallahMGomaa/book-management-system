@@ -1,5 +1,7 @@
 const Book = require("../models/books");
 const { BorrowedBook } = require("../models/borrowProcess");
+const { Borrower } = require("../models/borrowers");
+
 
 async function checkAvailableBookQuantity(book) {
     const borrowedBooks = await BorrowedBook.findAll({
@@ -11,14 +13,15 @@ async function checkAvailableBookQuantity(book) {
     return book.available_quantity > borrowedBooks.length
 }
 
-async function borrowBookService(userId, bookId) {
+async function borrowBookService(borrowerId, bookId) {
     const book = await Book.findOne({where: {id: bookId}})
+    const borrower = await Borrower.findByPk(borrowerId)
     if (!await checkAvailableBookQuantity(book)) {
         throw new Error('book quantity is not available')
     }
     const currentTime = new Date()
     const dueTime = new Date(currentTime.getTime() + (7*24*60*60*1000))
-    const borrowBook = await BorrowedBook.create({borrowedBy: userId, bookId, dueDate: dueTime})
+    const borrowBook = await BorrowedBook.create({borrowedBy: borrower.id, bookId: book.id, dueDate: dueTime})
     return borrowBook
 }
 
