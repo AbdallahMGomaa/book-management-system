@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DB
+    ports:
+      - "5442:5432"
+
+  node_app:
+    depends_on:
+      - db
+    build: .
+    restart: always
+    environment:
+      DATABASE_URL: postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@db:5432/$POSTGRES_DB
+    ports:
+      - "4000:4000"
+    
