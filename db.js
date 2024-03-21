@@ -1,6 +1,10 @@
 const {Sequelize} = require('sequelize')
 
-const sequelize = new Sequelize('postgres://postgres:password@localhost:5442/book_management_system')
+require('dotenv').config()
+
+
+
+const sequelize = new Sequelize(process.env.DATABASE_URL)
 
 sequelize.sync()
     .then(() => {

@@ -16,6 +16,7 @@ const Borrower = db.define('Borrower', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    
 })
 
 User.hasOne(Borrower)

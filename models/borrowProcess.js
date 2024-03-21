@@ -2,6 +2,7 @@ const {DataTypes} = require('sequelize')
 const db = require('../db')
 const { Borrower } = require('./borrowers')
 const Book = require('./books')
+const { User } = require('./auth')
 
 const BorrowedBook = db.define('BorrowedBook', {
     borrowedBy: {
@@ -10,15 +11,15 @@ const BorrowedBook = db.define('BorrowedBook', {
         references: {
             model: Borrower,
             key: 'id'
-        }
+        },
     },
     bookId: {
         type: DataTypes.INTEGER,
-        allowNAuthorull: false,
+        allowNull: false,
         references: {
             model: Book,
             key: 'id'
-        }
+        },
     },
     isReturned: {
         type: DataTypes.BOOLEAN,
@@ -34,5 +35,9 @@ const BorrowedBook = db.define('BorrowedBook', {
         allowNull: false
     }
 })
+
+
+Book.belongsToMany(Borrower, { through: BorrowedBook, foreignKey: 'bookId'});
+Borrower.belongsToMany(Book, { through: BorrowedBook, foreignKey: 'borrowedBy' });
 
 module.exports = {BorrowedBook}
