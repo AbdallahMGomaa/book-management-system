@@ -10,11 +10,11 @@ const router = express.Router()
 
 
 
-router.get('/', getBooks)
-router.get('/:id', getBookById)
-router.post('/', authenticateUser, checkUserRole(['borrower']), createBook)
-router.put('/:id', updateBook)
-router.delete('/:id', deleteBook)
+router.get('/', checkUserRole(['borrower', 'admin']), getBooks)
+router.get('/:id', checkUserRole(['borrower', 'admin']), getBookById)
+router.post('/', checkUserRole(['admin']), createBook)
+router.put('/:id', checkUserRole(['admin']), updateBook)
+router.delete('/:id', checkUserRole(['admin']), deleteBook)
 
 
 module.exports = router

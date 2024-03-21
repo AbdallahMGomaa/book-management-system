@@ -19,7 +19,7 @@ app.use(bodyParser.json())
 // Routes
 app.use('/books', authenticateUser, bookRouter)
 app.use('/auth', authRouter)
-app.use('/borrowers', borrowersRouter)
+app.use('/borrowers', authenticateUser, borrowersRouter)
 app.use('/borrow', authenticateUser, checkUserRole(['borrower']), borrowRouter)
 
 

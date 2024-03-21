@@ -7,11 +7,11 @@ const { checkUserRole } = require('../middleware/permissions');
 const router = express.Router()
 
 
-router.get('/', authenticateUser, checkUserRole(['borrower']), getBorrowers)
-router.get('/:id', authenticateUser, getBorrowerById)
-router.post('/', createBorrower)
-router.put('/:id', authenticateUser, updateBorrower)
-router.delete('/:id', authenticateUser, deleteBorrower)
+router.get('/', checkUserRole(['admin']), getBorrowers)
+router.get('/:id', checkUserRole(['admin']), getBorrowerById)
+router.post('/', checkUserRole(['borrower', 'admin']), createBorrower)
+router.put('/:id', checkUserRole(['borrower', 'admin']), updateBorrower)
+router.delete('/:id', checkUserRole(['admin']), deleteBorrower)
 
 
 module.exports = router

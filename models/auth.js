@@ -10,7 +10,13 @@ const User = db.define('User', {
     password: {
         type: DataTypes.STRING,
         allowNull: true
-    }
+    },
+    indexes: [
+        {
+          unique: true,
+          fields: ['email'],
+        },
+    ],
 })
 
 const Role = db.define('Role', {
@@ -18,7 +24,7 @@ const Role = db.define('Role', {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
-    }
+    },
 })
 
 const UserRole = db.define('UserRole', {

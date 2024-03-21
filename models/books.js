@@ -21,7 +21,21 @@ const Book = sequelize.define('Book', {
     shelf_location: {
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+    indexes: [
+        {
+            unique: false,
+            fields: ['name'],
+        },
+        {
+          unique: true,
+          fields: ['ISBN'],
+        },
+        {
+            unique: false,
+            fields: ['shelf_location'],
+        },
+    ],
 });
 
 module.exports = Book
