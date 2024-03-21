@@ -20,8 +20,8 @@ async function registerUser(request, response) {
 
 async function loginUser(request, response) {
     try {
-        const {username, password} = request.body
-        const user = await User.findOne({where: {username}})
+        const {email, password} = request.body
+        const user = await User.findOne({where: {email}})
         if (!user) {
             throw new Error('user not found')
         }

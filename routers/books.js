@@ -1,18 +1,18 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 
-const {getBooks, getBookById, createBook, updateBook, deleteBook} = require('../controllers/books')
+const {getBooks, getBookById, createBook, updateBook, deleteBook} = require('../controllers/books');
+const { authenticateUser } = require('../middleware/authentication');
+const { checkUserRole } = require('../middleware/permissions');
 
 const router = express.Router()
 
 
-router.use(bodyParser.json())
 
 
 router.get('/', getBooks)
 router.get('/:id', getBookById)
-router.post('/', createBook)
+router.post('/', authenticateUser, checkUserRole(['borrower']), createBook)
 router.put('/:id', updateBook)
 router.delete('/:id', deleteBook)
 
