@@ -1,4 +1,5 @@
 const sequelize = require("../db");
+const { Parser } = require('json2csv');
 
 async function getBorrowedFiltered(request, response) {
     try {
@@ -21,7 +22,13 @@ async function getBorrowedFiltered(request, response) {
             `,
             {replacements: {start, end}, type: sequelize.QueryTypes.SELECT}
         )
-        response.status(200).json(results)
+        const json2csvParser = new Parser({fields: ['borrow_process_id', 'borrower_id', 'borrower_name', 'is_returned', 'returned_at', 'due_date', 'created_at', 'book_title']})
+        const csvData = json2csvParser.parse(results)
+     
+        response.header('Content-Type', 'text/csv')
+        response.attachment('data.csv')
+        response.send(csvData)
+
     }
     catch (error) {
         response.status(400).json({error: error.message})
@@ -49,7 +56,12 @@ async function getAllBorrowedLastMonth(request, response) {
             `,
             { type: sequelize.QueryTypes.SELECT}
         )
-        response.status(200).json(results)
+        const json2csvParser = new Parser({fields: ['borrow_process_id', 'borrower_id', 'borrower_name', 'is_returned', 'returned_at', 'due_date', 'created_at', 'book_title']})
+        const csvData = json2csvParser.parse(results)
+     
+        response.header('Content-Type', 'text/csv')
+        response.attachment('data.csv')
+        response.send(csvData)
     }
     catch (error) {
         response.status(400).json({error: error.message})
@@ -76,7 +88,12 @@ async function getOverdueBorrowedLastMonth(request, response) {
             `,
             { type: sequelize.QueryTypes.SELECT}
         )
-        response.status(200).json(results)
+        const json2csvParser = new Parser({fields: ['borrow_process_id', 'borrower_id', 'borrower_name', 'is_returned', 'returned_at', 'due_date', 'created_at', 'book_title']})
+        const csvData = json2csvParser.parse(results)
+     
+        response.header('Content-Type', 'text/csv')
+        response.attachment('data.csv')
+        response.send(csvData)
     }
     catch (error) {
         response.status(400).json({error: error.message})
