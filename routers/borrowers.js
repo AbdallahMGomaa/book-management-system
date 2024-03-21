@@ -1,7 +1,6 @@
 const express = require('express');
 
 const {getBorrowers, getBorrowerById, createBorrower, updateBorrower, deleteBorrower} = require('../controllers/borrowers');
-const { authenticateUser } = require('../middleware/authentication');
 const { checkUserRole } = require('../middleware/permissions');
 
 const router = express.Router()
