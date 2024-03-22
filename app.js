@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const rateLimit = require('express-rate-limit')
+
 
 const bookRouter = require('./routers/books')
 const authRouter = require('./routers/auth')
@@ -13,9 +15,19 @@ const {checkUserRole} = require('./middleware/permissions')
 const config = require('./config')
 
 
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10, 
+    message: 'Too many requests, please try again later.'
+})
+
 
 // Middlewares
 app.use(bodyParser.json())
+app.use('/auth/register', limiter)
+app.use('/auth/login', limiter)
+
+
 
 // Routes
 app.use('/books', authenticateUser, bookRouter)
