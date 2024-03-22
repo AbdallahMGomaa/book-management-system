@@ -1,10 +1,9 @@
 const {Sequelize} = require('sequelize')
-
-require('dotenv').config()
-
+const config = require('./config')
 
 
-const sequelize = new Sequelize(process.env.DATABASE_URL)
+
+const sequelize = new Sequelize(config.DATABASE_URL)
 
 sequelize.sync()
     .then(() => {

@@ -1,7 +1,6 @@
-const {User, Role, UserRole} = require('../models/auth')
+const {User} = require('../models/auth')
 const bcrypt = require('bcryptjs')
 const { generateToken } = require('../utils/auth')
-const sequelize = require('../db')
 const {createUser, getUserRolesService} = require('../services/auth')
 const { validateEmail, validatePassword } = require('../validators/auth')
 

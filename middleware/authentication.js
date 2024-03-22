@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const {User} = require('../models/auth')
+const config = require('../config')
 
-require('dotenv').config()
 
 function authenticateUser(request, response, next) {
     const authHeader = request.headers.authorization
@@ -10,8 +10,7 @@ function authenticateUser(request, response, next) {
     }
 
     const token = authHeader.split(' ')[1]
-    console.log(process.env.SECRET_KEY)
-    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+    jwt.verify(token, config.SECRET_KEY, (err, decoded) => {
         if (err) {
             return response.status(401).json({message: 'unauthorized'})
         }
