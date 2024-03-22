@@ -19,5 +19,6 @@ const Borrower = db.define('Borrower', {
     
 })
 
+Borrower.hasOne(User)
 
 module.exports = {Borrower}
