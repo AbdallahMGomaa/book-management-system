@@ -16,10 +16,9 @@ require('dotenv').config()
 
 // Middlewares
 app.use(bodyParser.json())
-app.use(authenticateUser)
 
 // Routes
-app.use('/books', bookRouter)
+app.use('/books', authenticateUser, bookRouter)
 app.use('/auth', authRouter)
 app.use('/borrowers', authenticateUser, borrowersRouter)
 app.use('/borrow', authenticateUser, checkUserRole(['borrower']), borrowRouter)
