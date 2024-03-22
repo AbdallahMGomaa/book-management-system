@@ -23,13 +23,16 @@ To get started with the project, follow these steps:
    POSTGRES_PORT=your_database_port
    POSTGRES_ADDRESS=your_database_address
    SECRET_KEY=your_secret_key
-4. Run application:
+4. Initialize database with data:
+   ```shell
+   npm run initialize
+5. Run application:
    ```shell
    npm start
-5. (optional) Run application on docker:
+6. (optional) Run application on docker:
    ```shell
    docker-compose up
-6. Run unit tests:
+7. Run unit tests:
    ```shell
    npm test
 
