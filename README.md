@@ -125,3 +125,6 @@ To return a book send a `POST` request to `/borrow/return` with the following JS
 - `GET /reports/last_month_overdue`: returns an excel sheet with all overdue borrowed books last month
 
 **note**: all endpoints are authorized for "admin" only
+
+## Database diagram
+![Big Image](database%20ERD.png)
