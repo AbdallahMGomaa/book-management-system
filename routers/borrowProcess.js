@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require('express')
 
-const { checkoutBook, returnBook, checkBorrowedBooks } = require('../controllers/borrowProcess');
+const { checkoutBook, returnBook, checkBorrowedBooks } = require('../controllers/borrowProcess')
 
 const router = express.Router()
 

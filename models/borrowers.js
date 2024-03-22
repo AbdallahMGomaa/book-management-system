@@ -19,7 +19,5 @@ const Borrower = db.define('Borrower', {
     
 })
 
-User.hasOne(Borrower)
-Borrower.belongsTo(User)
 
 module.exports = {Borrower}

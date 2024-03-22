@@ -3,12 +3,13 @@ const bcrypt = require('bcryptjs')
 const { generateToken } = require('../utils/auth')
 const sequelize = require('../db')
 const {createUser, getUserRolesService} = require('../services/auth')
+const { validateEmail, validatePassword } = require('../validators/auth')
 
 
 async function registerUser(request, response) {
     try {
         const {email, password} = request.body
-        const user = createUser(email, password)
+        const user = createUser(email, password, validateEmail, validatePassword)
         const token = generateToken(user)
         response.status(200).json({token})
     }

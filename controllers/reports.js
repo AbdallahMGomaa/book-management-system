@@ -1,5 +1,5 @@
-const sequelize = require("../db");
-const { Parser } = require('json2csv');
+const sequelize = require("../db")
+const { Parser } = require('json2csv')
 
 async function getBorrowedFiltered(request, response) {
     try {

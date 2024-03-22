@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require('express')
 
 
-const {getBooks, getBookById, createBook, updateBook, deleteBook} = require('../controllers/books');
-const { checkUserRole } = require('../middleware/permissions');
+const {getBooks, getBookById, createBook, updateBook, deleteBook} = require('../controllers/books')
+const { checkUserRole } = require('../middleware/permissions')
 
 const router = express.Router()
 

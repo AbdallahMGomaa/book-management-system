@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../db');
+const { DataTypes } = require('sequelize')
+const sequelize = require('../db')
 
 const Book = sequelize.define('Book', 
     {
@@ -40,6 +40,6 @@ const Book = sequelize.define('Book',
             },
         ],
     }
-);
+)
 
-module.exports = Book
+module.exports = {Book}

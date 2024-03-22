@@ -1,11 +1,11 @@
-const { borrowBookService, returnBookService, getBorrowedBooksService } = require("../services/borrowProcess")
+const { checkAvailableBookQuantity, borrowBookService, returnBookService, getBorrowedBooksService } = require("../services/borrowProcess")
 
 
 async function checkoutBook(request, response) {
     try {
         const user = request.user
         const {bookId} = request.body
-        const borrowBook = await borrowBookService(user.id, bookId)
+        const borrowBook = await borrowBookService(user.id, bookId, checkAvailableBookQuantity)
         response.status(200).json({borrowBook})
     }
     catch (error) {

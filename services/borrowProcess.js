@@ -1,6 +1,6 @@
-const Book = require("../models/books");
-const { BorrowedBook } = require("../models/borrowProcess");
-const { Borrower } = require("../models/borrowers");
+const {Book} = require("../models/books")
+const { BorrowedBook } = require("../models/borrowProcess")
+const { Borrower } = require("../models/borrowers")
 
 
 async function checkAvailableBookQuantity(book) {
@@ -13,10 +13,10 @@ async function checkAvailableBookQuantity(book) {
     return book.available_quantity > borrowedBooks.length
 }
 
-async function borrowBookService(borrowerId, bookId) {
-    const book = await Book.findOne({where: {id: bookId}})
+async function borrowBookService(borrowerId, bookId, checkQuantity) {
+    const book = await Book.findByPk(bookId)
     const borrower = await Borrower.findByPk(borrowerId)
-    if (!await checkAvailableBookQuantity(book)) {
+    if (!await checkQuantity(book)) {
         throw new Error('book quantity is not available')
     }
     const currentTime = new Date()
@@ -26,7 +26,8 @@ async function borrowBookService(borrowerId, bookId) {
 }
 
 async function returnBookService(userId, borrowedBookId){
-    const borrowedBook = await BorrowedBook.findByPk(borrowedBookId)
+    const borrower = await Borrower.findOne({where: {userId: userId}})
+    const borrowedBook = await BorrowedBook.findOne({where: {id: borrowedBookId, borrowedBy: borrower.id}})
     if (borrowedBook) {
         borrowedBook.update({isReturned: true, returnedAt: new Date()})
     }
@@ -34,7 +35,6 @@ async function returnBookService(userId, borrowedBookId){
         throw new Error('book not borrowed or found')
     }
     return borrowedBook
-
 }
 
 async function getBorrowedBooksService(userId) {
@@ -42,4 +42,4 @@ async function getBorrowedBooksService(userId) {
     return borrowedBooks
 }
 
-module.exports = {borrowBookService, returnBookService, getBorrowedBooksService}
+module.exports = {checkAvailableBookQuantity, borrowBookService, returnBookService, getBorrowedBooksService}

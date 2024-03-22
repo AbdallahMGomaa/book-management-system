@@ -37,7 +37,7 @@ const BorrowedBook = db.define('BorrowedBook', {
 })
 
 
-Book.belongsToMany(Borrower, { through: BorrowedBook, foreignKey: 'bookId'});
-Borrower.belongsToMany(Book, { through: BorrowedBook, foreignKey: 'borrowedBy' });
+Book.belongsToMany(Borrower, { through: BorrowedBook, foreignKey: 'bookId'})
+Borrower.belongsToMany(Book, { through: BorrowedBook, foreignKey: 'borrowedBy' })
 
 module.exports = {BorrowedBook}
