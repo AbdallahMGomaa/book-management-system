@@ -53,7 +53,7 @@ async function updateBorrower(request, response) {
     try {
         const borrowerId = request.params.id
         const borrower = await Borrower.findByPk(borrowerId)
-        if (Borrower) {
+        if (borrower) {
             const {name} = request.body
             await borrower.update({name})
             response.status(200).json(borrower)
