@@ -126,5 +126,7 @@ To return a book send a `POST` request to `/borrow/return` with the following JS
 
 **note**: all endpoints are authorized for "admin" only
 
+**note**: you can find examples of endpoint JSON inputs and outputs in the postman collection.
+
 ## Database diagram
 ![Big Image](database%20ERD.png)
