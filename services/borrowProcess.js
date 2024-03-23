@@ -30,7 +30,7 @@ async function borrowBookService(userId, bookId, checkQuantity) {
 
 async function returnBookService(userId, borrowedBookId){
     const borrower = await Borrower.findOne({where: {userId: userId}})
-    const borrowedBook = await BorrowedBook.findOne({where: {id: borrowedBookId, borrowedBy: borrower.id}})
+    const borrowedBook = await BorrowedBook.findOne({where: {id: borrowedBookId, borrowedBy: borrower.id, isReturned: false}})
     if (borrowedBook) {
         borrowedBook.update({isReturned: true, returnedAt: new Date()})
     }
