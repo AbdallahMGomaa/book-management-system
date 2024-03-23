@@ -1,0 +1,629 @@
+{
+	"info": {
+		"_postman_id": "9ba9614c-5d72-4b8a-a3f2-1aad3d57c320",
+		"name": "book management system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27184797"
+	},
+	"item": [
+		{
+			"name": "books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "book by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/books/1",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"introduction to algorithms\",\n    \"author\": \"abdallah gomaa\",\n    \"ISBN\": \"30uqkd\",\n    \"available_quantity\": 5,\n    \"shelf_location\": \"hnak\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/books/",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"books",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"introduction to algorithms\",\n    \"author\": \"abdallah gomaa\",\n    \"ISBN\": \"30uqkd\",\n    \"available_quantity\": 5,\n    \"shelf_location\": \"hnak\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/books/1",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete book",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzExMTIyMzYzLCJleHAiOjE3MTEyMDg3NjN9.mZO6yamZuNsTvIshATobPRQ39ljpFfOW6Nv-LDA4dfs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/books/2",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"books",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"abdallah3@email.com\",\n    \"password\": \"A112233a&\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"abdallah@abdallah14.com\",\n    \"password\": \"A112233a&\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user roles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJhYmRhbGxhaDIiLCJpYXQiOjE3MTA5NTk1ODYsImV4cCI6MTcxMTA0NTk4Nn0.6uNFy7pTPVAA4mQT9Maa20G_lwPqsjFPF-ZvQgx6JZc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"abdallah2\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/auth/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get borrowers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJhYmRhbGxhaDIiLCJpYXQiOjE3MTA5NTk1ODYsImV4cCI6MTcxMTA0NTk4Nn0.6uNFy7pTPVAA4mQT9Maa20G_lwPqsjFPF-ZvQgx6JZc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrowers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrowers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get borrower by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJhYmRhbGxhaDIiLCJpYXQiOjE3MTA5NTk1ODYsImV4cCI6MTcxMTA0NTk4Nn0.6uNFy7pTPVAA4mQT9Maa20G_lwPqsjFPF-ZvQgx6JZc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrowers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrowers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create borrower",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJhYmRhbGxhaDIiLCJpYXQiOjE3MTA5NTk1ODYsImV4cCI6MTcxMTA0NTk4Nn0.6uNFy7pTPVAA4mQT9Maa20G_lwPqsjFPF-ZvQgx6JZc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"abdallah\",\n    \"email\": \"abdallah11@abdallah.com\",\n    \"password\": \"A112233a&\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrowers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrowers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update borrower",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJhYmRhbGxhaDIiLCJpYXQiOjE3MTA5NTk1ODYsImV4cCI6MTcxMTA0NTk4Nn0.6uNFy7pTPVAA4mQT9Maa20G_lwPqsjFPF-ZvQgx6JZc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"abdallah Gomaa\",\n    \"email\": \"abdallah11@abdallah.com\",\n    \"password\": \"A112233a&\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrowers/2",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrowers",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete borrower",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJhYmRhbGxhaDIiLCJpYXQiOjE3MTA5NTk1ODYsImV4cCI6MTcxMTA0NTk4Nn0.6uNFy7pTPVAA4mQT9Maa20G_lwPqsjFPF-ZvQgx6JZc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"abdallah Gomaa\",\n    \"email\": \"abdallah11@abdallah.com\",\n    \"password\": \"A112233a&\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrowers/1",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrowers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkout book",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImlhdCI6MTcxMDk4ODg5MCwiZXhwIjoxNzExMDc1MjkwfQ.KpCIqLYcNtL_TON4udYK_1ZgNdeUmDR2Uq7aG7Rx2r0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrow/checkout",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrow",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "return book",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImlhdCI6MTcxMDk4ODg5MCwiZXhwIjoxNzExMDc1MjkwfQ.KpCIqLYcNtL_TON4udYK_1ZgNdeUmDR2Uq7aG7Rx2r0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"borrowedBook\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrow/return",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrow",
+						"return"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "borrowed books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzExMTU4Mzk0LCJleHAiOjE3MTEyNDQ3OTR9.2RVB3ohsvspR9NBY-IKZ5owtJY2UmVBFC0mkZoIhQp4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrow/borrowed",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrow",
+						"borrowed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "report borrowed between date",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImlhdCI6MTcxMDk4ODg5MCwiZXhwIjoxNzExMDc1MjkwfQ.KpCIqLYcNtL_TON4udYK_1ZgNdeUmDR2Uq7aG7Rx2r0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/reports/borrowing_process?start=2023-02-25&end=2025-02-25",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"reports",
+						"borrowing_process"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2023-02-25"
+						},
+						{
+							"key": "end",
+							"value": "2025-02-25"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "report borrowed in last month",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImlhdCI6MTcxMDk4ODg5MCwiZXhwIjoxNzExMDc1MjkwfQ.KpCIqLYcNtL_TON4udYK_1ZgNdeUmDR2Uq7aG7Rx2r0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/reports/last_month_borrowed",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"reports",
+						"last_month_borrowed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "report overdue last month",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImlhdCI6MTcxMDk4ODg5MCwiZXhwIjoxNzExMDc1MjkwfQ.KpCIqLYcNtL_TON4udYK_1ZgNdeUmDR2Uq7aG7Rx2r0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/borrow/borrowed",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"borrow",
+						"borrowed"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
