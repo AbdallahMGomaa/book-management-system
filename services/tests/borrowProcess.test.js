@@ -41,7 +41,7 @@ describe('borrowBookService', () => {
         const checkAvailableBookQuantityMock = jest.fn(() => true)
 
         Book.findByPk.mockResolvedValue(book)
-        Borrower.findByPk.mockResolvedValue(borrower)
+        Borrower.findOne.mockResolvedValue(borrower)
         BorrowedBook.create.mockResolvedValue(borrowedBook)
 
         const result = await borrowBookService(borrower.id, book.id, checkAvailableBookQuantityMock)
@@ -49,7 +49,7 @@ describe('borrowBookService', () => {
         expect(result).toEqual(borrowedBook)
         expect(checkAvailableBookQuantityMock).toHaveBeenCalledWith(book)
         expect(Book.findByPk).toHaveBeenCalledWith(book.id)
-        expect(Borrower.findByPk).toHaveBeenCalledWith(borrower.id)
+        expect(Borrower.findOne).toHaveBeenCalledWith({where: {userId: borrower.userId}})
     })
 
     test('a borrower borrows a book when there is no available books', async () => {
@@ -59,7 +59,7 @@ describe('borrowBookService', () => {
         const checkAvailableBookQuantityMock = jest.fn(() => false)
 
         Book.findByPk.mockResolvedValue(book)
-        Borrower.findByPk.mockResolvedValue(borrower)
+        Borrower.findOne.mockResolvedValue(borrower)
         BorrowedBook.create.mockResolvedValue(borrowedBook)
 
         expect(borrowBookService(borrower.id, book.id, checkAvailableBookQuantityMock)).rejects.toThrow('book quantity is not available')
@@ -84,7 +84,7 @@ describe('returnBookService', () => {
 
         expect(result).toEqual(borrowedBook)
         expect(Borrower.findOne).toHaveBeenCalledWith({ where: { userId } })
-        expect(BorrowedBook.findOne).toHaveBeenCalledWith({ where: { id: borrowedBookId, borrowedBy: borrower.id } })
+        expect(BorrowedBook.findOne).toHaveBeenCalledWith({ where: { id: borrowedBookId, borrowedBy: borrower.id, isReturned: false } })
         expect(borrowedBook.update).toHaveBeenCalledWith({ isReturned: true, returnedAt: expect.any(Date) })
     })
 
