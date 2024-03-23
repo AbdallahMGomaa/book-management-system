@@ -13,9 +13,12 @@ async function checkAvailableBookQuantity(book) {
     return book.available_quantity > borrowedBooks.length
 }
 
-async function borrowBookService(borrowerId, bookId, checkQuantity) {
+async function borrowBookService(userId, bookId, checkQuantity) {
     const book = await Book.findByPk(bookId)
-    const borrower = await Borrower.findByPk(borrowerId)
+    if (!book) {
+        throw new Error('book not found')
+    }
+    const borrower = await Borrower.findOne({where: {userId}})
     if (!await checkQuantity(book)) {
         throw new Error('book quantity is not available')
     }
@@ -38,7 +41,8 @@ async function returnBookService(userId, borrowedBookId){
 }
 
 async function getBorrowedBooksService(userId) {
-    const borrowedBooks = await BorrowedBook.findAll({where: {borrowedBy: userId, isReturned: false}})
+    const borrower = await Borrower.findOne({where: {userId}})
+    const borrowedBooks = await BorrowedBook.findAll({where: {borrowedBy: borrower.id, isReturned: false}})
     return borrowedBooks
 }
 

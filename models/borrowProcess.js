@@ -5,6 +5,11 @@ const {Book} = require('./books')
 const { User } = require('./auth')
 
 const BorrowedBook = db.define('BorrowedBook', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     borrowedBy: {
         type: DataTypes.INTEGER,
         allowNull: false,
